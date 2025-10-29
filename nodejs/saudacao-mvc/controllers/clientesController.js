@@ -1,3 +1,5 @@
+const clientesModel = require('../models/clientesModel');
+
 module.exports = {
 
 
@@ -5,7 +7,9 @@ module.exports = {
         res.sendFile('clientes.html' , { root: './views' });
 },
 login: (req, res) => {
-        res.sendFile('login.html' , { root: './views' });
+        const {login, senha } = req.body;
+        const mensagemLogin = clientesModel.gerarMensagemLogin(login, senha);
+        res.sendFile(`<h1>'${mensagemLogin}</h1>`);
 },
 formlogin: (req, res) => {
         res.sendFile('formlogin.html' , { root: './views' });
